@@ -10,11 +10,7 @@ if (!Package.onUse) {
   Package.onUse = Package.on_use;
 }
 
-if (!Package.onTest) {
-  Package.onTest = Package.on_test;
-}
-
-Package.onUse(function (api) {
+Package.onUse(function(api) {
   if (api.versionsFrom) {
     api.versionsFrom('METEOR@0.9.0');
   }
@@ -22,6 +18,7 @@ Package.onUse(function (api) {
   api.use([
     'sergeyt:d3@3.4.1',
     'templating',
+    'underscore',
     'ecmascript'
   ], 'client');
 
@@ -33,14 +30,17 @@ Package.onUse(function (api) {
   ], 'client');
 });
 
-Package.onTest(function (api) {
+Package.onTest(function(api) {
   api.use([
-    'gorillastack:c3',
-    'tinytest',
-    'ecmascript'
+    'underscore',
+    'ecmascript',
+    'templating',
+    'tinytest'
   ], 'client');
 
   api.addFiles([
+    'src/template.html',
+    'src/template.js',
     'test/template_tests.js'
   ], 'client');
 });

@@ -45,11 +45,54 @@ getFieldNames = (fields) => {
   }
 };
 
+getDataAsColumns = (data) => {
+  let columns = getSafe(data, 'data.columns', false);
+  let rows = getSafe(data, 'data.rows');
+
+  if (!columns && rows) {
+    columns = [];
+    rows.forEach((row) => {
+      row.forEach((element, j) => {
+        if (columns.length <= j) {
+          columns[j] = [];
+        }
+
+        columns[j].push(element);
+      });
+    });
+  }
+
+  return columns;
+};
+
 getLoadUnloadDetails = (previousData, currentData) => {
   let previousFields = getFieldNames(previousData);
   let currentFields = getFieldNames(currentData);
+  let fieldsToUnload = [];
 
+  let previousColumns = getDataAsColumns(previousData);
+  let currentColumns = getDataAsColumns(currentData);
 
+  let result = _.clone(currentData.data);
+  previousColumns.forEach((previousColumn) => {
+    let fieldRemoved = !currentColumns.some((currentColumn) => {
+      return previousColumn[0] === currentColumn[0];
+    });
+
+    let fieldChanged = currentColumns.some((currentColumn) => {
+      return currentColumn[0] === previousColumn[0]
+        && currentColumn.length === previousColumn.length
+        && currentColumn.some((value, i) => {
+          previousColumn[i] !== value;
+        });
+    });
+    if (fieldRemoved || fieldChanged) {
+      fieldsToUnload.push(previousColumn[0]);
+    }
+  });
+
+  result.unload = fieldsToUnload;
+  return result;
 };
 
 const drawChart = (template) => {

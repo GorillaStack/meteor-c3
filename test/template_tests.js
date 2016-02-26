@@ -50,3 +50,11 @@ Tinytest.add('getFieldNames can find field names for data.rows', (test) => {
 
 Tinytest.add('getLoadUnloadDetails specifies columns to unload whereby for data.rows', (test) => {
 });
+
+Tinytest.add('getDataAsColumns is an identity function on column data', (test) => {
+  test.equal(getDataAsColumns(columnData1), columnData1.data.columns);
+});
+
+Tinytest.add('getDataAsColumns converts row data to column data', (test) => {
+  test.equal(getDataAsColumns(rowData2), [['key6', 23],  ['key7', 67], ['key2', 66], ['key5', 88], ['key3', 53]]);
+});
