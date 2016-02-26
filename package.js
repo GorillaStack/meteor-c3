@@ -1,7 +1,7 @@
 Package.describe({
   name: 'gorillastack:c3',
   summary: 'A truly reactive C3 charting library based on D3',
-  version: '0.4.11',
+  version: '0.4.11-1',
   git: 'https://github.com/gorillastack/meteor-c3.git'
 });
 
@@ -19,7 +19,7 @@ Package.onUse(function(api) {
     'sergeyt:d3@3.4.1',
     'templating',
     'underscore',
-    'ecmascript'
+    'ecmascript@0.1.3'
   ], 'client');
 
   api.addFiles([
@@ -33,7 +33,7 @@ Package.onUse(function(api) {
 Package.onTest(function(api) {
   api.use([
     'underscore',
-    'ecmascript',
+    'ecmascript@0.1.3',
     'templating',
     'tinytest'
   ], 'client');
