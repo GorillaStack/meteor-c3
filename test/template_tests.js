@@ -48,7 +48,12 @@ Tinytest.add('getFieldNames can find field names for data.rows', (test) => {
   test.equal(getFieldNames(rowData1), ['key1', 'key2', 'key3', 'key4', 'key5']);
 });
 
-Tinytest.add('getLoadUnloadDetails specifies columns to unload whereby for data.rows', (test) => {
+Tinytest.add('getLoadUnloadDetails specifies data to unload for data.rows where data removed', (test) => {
+  test.equal(getLoadUnloadDetails(rowData1, rowData2), { rows: rowData2.data.rows, unload: ['key1', 'key4'] });
+});
+
+Tinytest.add('getLoadUnloadDetails specifies data to unload for data.columns where data removed', (test) => {
+  test.equal(getLoadUnloadDetails(columnData1, columnData2), { columns: columnData2.data.columns, unload: ['key2', 'key6', 'key8'] });
 });
 
 Tinytest.add('getDataAsColumns is an identity function on column data', (test) => {
