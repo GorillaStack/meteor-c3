@@ -16,10 +16,10 @@ Package.onUse(function(api) {
   }
 
   api.use([
-    'd3js:d3',
+    'd3js:d3@3.5.8',
     'templating',
     'underscore',
-    'ecmascript'
+    'ecmascript@0.4.6_1'
   ], 'client');
 
   api.addFiles([
