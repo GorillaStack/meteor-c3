@@ -1,7 +1,7 @@
 Package.describe({
   name: 'gorillastack:c3',
   summary: 'A truly reactive C3 charting library based on D3',
-  version: '0.4.11-2',
+  version: '0.4.11-3',
   git: 'https://github.com/gorillastack/meteor-c3.git'
 });
 

@@ -1,3 +1,5 @@
+import c3 from '../c3/c3';
+
 const getSafe = (obj, path, defaultValue) => {
   if (!obj) {
     return defaultValue;
